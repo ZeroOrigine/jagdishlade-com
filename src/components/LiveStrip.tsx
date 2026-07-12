@@ -47,8 +47,12 @@ export default async function LiveStrip() {
           {f.halted ? 'halted · ' : 'building now · '}
           <strong>{f.name}</strong>
           {' · '}
-          {f.thoughtBy ?? 'the pipeline'} at {STATION_LABEL[f.station] ?? 'work'}
-          {thought ? ` — “${thought.slice(0, 70)}${thought.length > 70 ? '…' : ''}”` : ''}
+          {f.halted
+            ? `stuck at ${STATION_LABEL[f.station] ?? 'the line'} — ${f.status}`
+            : `${f.thoughtBy ?? 'the pipeline'} at ${STATION_LABEL[f.station] ?? 'work'}`}
+          {!f.halted && thought
+            ? ` — “${thought.slice(0, 70)}${thought.length > 70 ? '…' : ''}”`
+            : ''}
         </span>
         <span className="cost mono">
           {elapsed(f.born)} · {money(f.cost)}

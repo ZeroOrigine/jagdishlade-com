@@ -270,9 +270,11 @@ h1, h2, h3, h4 {
 /* =========================================================
    COUNTERS — the honest numbers
    ========================================================= */
+/* Fixed columns, NOT auto-fit: with auto-fit the full-width source line (grid-column 1/-1)
+   wraps to a new row and leaves dead cells on the first row. Caught on the live deploy. */
 .counters {
   display: grid; gap: 1px;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   background: var(--border);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -297,6 +299,7 @@ h1, h2, h3, h4 {
   font-family: var(--mono); font-size: 0.68rem; color: var(--text-dim);
   border-top: 1px solid var(--border);
 }
+@media (min-width: 760px) { .counters { grid-template-columns: repeat(4, 1fr); } }
 
 /* =========================================================
    SECTIONS

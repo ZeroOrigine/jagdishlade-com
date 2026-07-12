@@ -51,7 +51,9 @@ export const metadata: Metadata = {
 };
 
 // Set the theme before paint so the page never flashes the wrong colour.
-const THEME_BOOT = `(function(){try{var t=localStorage.getItem('jl-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
+// Ink is the identity — the OS preference does not get to overrule it. Paper is a
+// deliberate choice the reader makes (and we remember it).
+const THEME_BOOT = `(function(){try{var t=localStorage.getItem('jl-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
 
 const PERSON_LD = {
   '@context': 'https://schema.org',

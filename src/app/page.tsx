@@ -72,8 +72,16 @@ export default async function Home() {
       <section>
         <div className="wrap-wide">
           <p className="sec-label">Live</p>
+          {/* The headline follows the machine's ACTUAL state. A halted product must never be
+              described as "being born" — that is precisely the comfortable lie this site exists
+              to make impossible. Caught on the first live deploy: RigFile was qa_failed while the
+              page cheerfully announced a birth. */}
           <h2 className="sec-title">
-            {f ? 'Something is being born right now.' : 'The machine, when it wakes.'}
+            {!f
+              ? 'The machine, when it wakes.'
+              : f.halted
+                ? `${f.name} is stuck, and I am not going to hide it.`
+                : 'Something is being born right now.'}
           </h2>
           <p className="sec-sub">
             ZeroOrigine is eight AI Minds with a constitution and a budget. They research a problem,
@@ -91,24 +99,29 @@ export default async function Home() {
             </div>
 
             <div className="machine-body">
-              {f ? (
-                thought ? (
-                  <>
-                    <span className="who">{f.thoughtBy ?? 'A Mind'}</span>
-                    {' → '}
-                    {thought}
-                  </>
-                ) : (
-                  <span className="idle">
-                    {f.thoughtBy ?? 'A Mind'} is writing code right now. Its current output is raw
-                    source, not a sentence — so there is nothing honest to quote here. The stage and
-                    the money below are real.
-                  </span>
-                )
-              ) : (
+              {!f ? (
                 <span className="idle">
                   No product is on the line at this moment. When one is, this panel shows the Mind
                   that is working and the last thing it thought — unedited.
+                </span>
+              ) : f.halted ? (
+                <span className="idle">
+                  {f.name} is halted at {STATIONS[f.station] ?? 'the line'} — status{' '}
+                  <code>{f.status}</code>. Its own QA refused to let it ship, so it is sitting
+                  there, costing me {money(f.cost)}, until it is fixed. This is what the inside of
+                  building looks like. Most sites would show you a green tick.
+                </span>
+              ) : thought ? (
+                <>
+                  <span className="who">{f.thoughtBy ?? 'A Mind'}</span>
+                  {' → '}
+                  {thought}
+                </>
+              ) : (
+                <span className="idle">
+                  {f.thoughtBy ?? 'A Mind'} is emitting source code, not sentences, at this exact
+                  second — so there is nothing honest to quote here. The stage and the money below
+                  are real.
                 </span>
               )}
             </div>

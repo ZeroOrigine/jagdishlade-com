@@ -86,8 +86,9 @@ export default async function Building() {
 
           <div className="callout reveal">
             <p>
-              <strong>Yes, revenue is zero.</strong> Six products are live and not one of them has
-              taken a dollar. I could hide that behind &ldquo;early stage.&rdquo; The whole
+              <strong>Yes, revenue is zero.</strong>{' '}
+              {stats ? `All ${stats.liveCount} live products` : 'Every live product'} and not one
+              dollar between them. I could hide that behind &ldquo;early stage.&rdquo; The whole
               experiment is worth nothing if I do.
             </p>
             <p>
@@ -104,7 +105,13 @@ export default async function Building() {
       <section>
         <div className="wrap-wide">
           <p className="sec-label">On the line</p>
-          <h2 className="sec-title">{f ? `${f.name} is being born.` : 'Nothing is on the line right now.'}</h2>
+          <h2 className="sec-title">
+            {!f
+              ? 'Nothing is on the line right now.'
+              : f.halted
+                ? `${f.name} is halted — and I am showing you anyway.`
+                : `${f.name} is being born.`}
+          </h2>
 
           {f ? (
             <div className={`machine${f.halted ? '' : ' on'}`}>
@@ -113,7 +120,13 @@ export default async function Building() {
                 <span className="live">{f.halted ? '⏸ halted' : '● working'}</span>
               </div>
               <div className="machine-body">
-                {thought ? (
+                {f.halted ? (
+                  <span className="idle">
+                    Halted at {STATIONS[f.station] ?? 'the line'} — status <code>{f.status}</code>.
+                    The machine&apos;s own QA refused to pass it. {money(f.cost)} spent and it is
+                    not shipping until it is right. Nobody publishes this screen. That is why I do.
+                  </span>
+                ) : thought ? (
                   <>
                     <span className="who">{f.thoughtBy ?? 'A Mind'}</span>
                     {' → '}
