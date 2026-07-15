@@ -668,3 +668,20 @@ section { padding: clamp(60px, 9vw, 110px) 0; }
   margin-bottom: var(--s4);
 }
 .const-band-essay { margin-bottom: var(--s3); }
+
+/* hero constellation accent (desktop only, behind text) */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap-wide { position: relative; z-index: 1; }
+.hero-const {
+  position: absolute; top: 50%; right: -3%; transform: translateY(-50%);
+  width: 46%; max-width: 560px; opacity: 0.6; pointer-events: none; z-index: 0;
+}
+@media (max-width: 940px) { .hero-const { display: none; } }
+
+/* subscribe block */
+.subscribe-block {
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--surface); padding: 28px 26px; margin: var(--s4) 0 var(--s2);
+}
+.subscribe-block h3 { font-size: 1.35rem; margin-bottom: 8px; }
+.subscribe-block > p { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 18px; max-width: 52ch; }

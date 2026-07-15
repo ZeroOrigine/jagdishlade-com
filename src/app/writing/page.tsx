@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getPosts, formatDate } from '@/lib/writing';
 import Constellation from '@/components/Constellation';
+import SubscribeForm from '@/components/SubscribeForm';
 
 export const metadata: Metadata = {
   title: 'Writing. Essays on truth, failure, building, starting over',
@@ -61,8 +62,13 @@ export default function Writing() {
               ))}
             </div>
           )}
+          <div className="subscribe-block">
+            <h3>Get new essays by email.</h3>
+            <p>When the machine ships a product, or I finish a piece of writing, it reaches you the same day. Nothing else.</p>
+            <SubscribeForm />
+          </div>
           <p className="sub-note" style={{ marginTop: 28 }}>
-            <a href="/rss.xml">RSS feed</a>. For people who still own their own reading list.
+            Or subscribe by <a href="/rss.xml">RSS</a>, for people who still own their own reading list.
           </p>
         </div>
       </section>

@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import ReadingBar from '@/components/ReadingBar';
 import Constellation from '@/components/Constellation';
 import { getPost, getPosts, formatDate } from '@/lib/writing';
+import SubscribeForm from '@/components/SubscribeForm';
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -66,6 +67,11 @@ export default function Post({ params }: { params: { slug: string } }) {
           <MDXRemote source={p.body} />
         </div>
 
+        <div className="subscribe-block">
+          <h3>More where this came from.</h3>
+          <p>New essays, sent the day they publish. No schedule, no noise.</p>
+          <SubscribeForm />
+        </div>
         <p className="sub-note" style={{ paddingBottom: 80 }}>
           <Link href="/writing">← All essays</Link> · If this made you think, tell me:{' '}
           <a href="mailto:cajagdishlade@gmail.com">cajagdishlade@gmail.com</a>. I answer everyone.

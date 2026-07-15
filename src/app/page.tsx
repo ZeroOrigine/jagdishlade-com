@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import ContactForm from '@/components/ContactForm';
+import Constellation from '@/components/Constellation';
 import { getPosts, formatDate } from '@/lib/writing';
 
 export default async function Home() {
@@ -31,6 +32,9 @@ export default async function Home() {
               Read the essays
             </Link>
           </div>
+        </div>
+        <div className="hero-const" aria-hidden="true">
+          <Constellation seed="jagdish-lade-collecting-dots" height={420} />
         </div>
       </section>
 
