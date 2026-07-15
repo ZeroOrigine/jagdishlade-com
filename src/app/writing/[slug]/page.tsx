@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import ReadingBar from '@/components/ReadingBar';
+import Constellation from '@/components/Constellation';
 import { getPost, getPosts, formatDate } from '@/lib/writing';
 
 export function generateStaticParams() {
@@ -47,6 +48,9 @@ export default function Post({ params }: { params: { slug: string } }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 
       <article className="essay">
+        <div className="const-band const-band-essay">
+          <Constellation seed={p.slug} height={220} />
+        </div>
         <header className="essay-head">
           <h1>{p.title}</h1>
           <div className="m">

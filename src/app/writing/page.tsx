@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { getPosts, formatDate } from '@/lib/writing';
+import Constellation from '@/components/Constellation';
 
 export const metadata: Metadata = {
   title: 'Writing. Essays on truth, failure, building, starting over',
@@ -29,6 +30,9 @@ export default function Writing() {
 
       <section style={{ paddingTop: 0 }}>
         <div className="wrap">
+          <div className="const-band">
+            <Constellation seed="jagdish-lade-writing" height={150} />
+          </div>
           {posts.length === 0 ? (
             <div className="empty">Nothing published yet.</div>
           ) : (

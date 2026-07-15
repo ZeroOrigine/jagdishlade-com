@@ -656,3 +656,15 @@ section { padding: clamp(60px, 9vw, 110px) 0; }
 @media (max-width: 520px) {
   .contact-row { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   CONSTELLATION BAND (generative essay headers)
+   ========================================================= */
+.const-band {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  margin-bottom: var(--s4);
+}
+.const-band-essay { margin-bottom: var(--s3); }
