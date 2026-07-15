@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/building' },
 };
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic'; // live numbers render per-request — never from a build-time snapshot
 
 export default async function Building() {
   const [stats, pulse, birth] = await Promise.all([getStats(), getPulse(), getBirthline()]);

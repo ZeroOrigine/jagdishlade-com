@@ -4,7 +4,7 @@ import SubscribeForm from '@/components/SubscribeForm';
 import { getPosts, formatDate } from '@/lib/writing';
 import { getStats, getBirthline, money, elapsed, readableThought, STATIONS } from '@/lib/zo';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic'; // live numbers render per-request — never from a build-time snapshot
 
 export default async function Home() {
   const [stats, birth, posts] = await Promise.all([getStats(), getBirthline(), getPosts()]);

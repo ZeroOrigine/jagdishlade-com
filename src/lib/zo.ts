@@ -14,12 +14,15 @@
  */
 
 const ZO = 'https://zeroorigine.com';
-const REVALIDATE = 60; // seconds
 
 async function get<T>(path: string): Promise<T | null> {
   try {
+    // no-store, not ISR: Netlify's data cache never refreshed `revalidate`
+    // entries — the site served July-12 numbers for days while claiming
+    // "refreshed every 60s". A per-request fetch cannot serve a remembered
+    // number; zeroorigine's own CDN caching (s-maxage=60) keeps it cheap.
     const res = await fetch(`${ZO}${path}`, {
-      next: { revalidate: REVALIDATE },
+      cache: 'no-store',
       headers: { accept: 'application/json' },
     });
     if (!res.ok) return null;
