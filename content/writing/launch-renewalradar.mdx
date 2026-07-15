@@ -1,0 +1,52 @@
+---
+title: "The charge you never approved just cleared your account"
+date: "2026-07-15"
+summary: "RenewalRadar tracks your subscriptions and vendor contracts and warns you before the renewal or cancel-by date, so the surprise charge stops being a surprise."
+tags: ["launch", "finance"]
+series: "launch"
+product: "renewalradar"
+productName: "RenewalRadar"
+url: "https://renewalradar.zeroorigine.com"
+---
+
+## A bet against your own memory
+
+Every subscription you forgot about is a bet you made against your own memory. You lose that bet every time.
+
+I know the scene because I've lived it as a CA and I've watched a hundred clients live it too. You signed up for a 14-day trial of some tool in March. It solved a problem that week. By April the problem was gone but the subscription wasn't. By November you're staring at a bank statement wondering who authorized 47 dollars to a company you can't quite place.
+
+Nobody budgeted for that charge. Nobody decided to keep paying for it. It just kept happening, quietly, because renewal dates don't send you a polite tap on the shoulder. They just fire.
+
+If you run a small team, this isn't one line item. It's a stack. Software tools, vendor contracts, that annual insurance add-on someone signed six months ago and forgot to flag. Each one has its own clock, ticking on its own schedule, in its own inbox that nobody checks daily. You don't have a spending problem. You have a memory problem dressed up as a spending problem.
+
+## What a ledger and a calendar have in common
+
+Here's the dot I keep connecting, going back to my accounting years. A trial balance doesn't fail because someone stole money. It fails because two numbers that should match, don't, and nobody caught it in time. Reconciliation isn't glamorous work. It's just the discipline of checking things before they become a problem instead of after.
+
+A renewal date is the same discipline, applied to time instead of money. The charge on day 365 isn't a surprise. It was scheduled the day you signed up. The surprise is only that nobody was watching the calendar the way an accountant watches a ledger.
+
+Most people don't have a system for this because building one feels like overkill for a 12-dollar subscription. So they build nothing. Then the 12-dollar subscriptions multiply into a stack of 20, and the "overkill" system starts looking like the only sane option.
+
+This is the pattern I keep seeing across completely unrelated fields, not just money. Machines that fail without warning, contracts that auto-renew without a flag, medicine that expires quietly in the back of a cabinet. The failure is rarely the event itself. It's the absence of a checkpoint before the event.
+
+## Removing the step, not adding a feature
+
+My instinct with every tool I build is the same: what step can I remove, not what feature can I bolt on. Nobody needs another dashboard to check daily. People already ignore dashboards. What they need is one less thing to remember.
+
+RenewalRadar does one job. You add your subscriptions and vendor contracts, and it tracks the renewal and cancel-by dates for you. Before those dates hit, it alerts you. That's the whole mechanism. You stop opening seventeen different vendor portals to check status. You stop keeping a mental list that fails you exactly when it matters most, which is the week before a charge lands.
+
+It runs on Stripe for billing and Supabase for auth, so the plumbing is standard and it isn't trying to be clever about the boring parts. The boring parts should be boring. The only thing that should demand your attention is the date that's about to cost you money or lock you into another year of something you meant to cancel.
+
+This is the "back to zero" instinct I keep applying everywhere. Don't add complexity to manage complexity. Remove the step where a human has to remember something a system can hold instead.
+
+## The honest state of it
+
+My machine built this. Not a team, not months of roadmap meetings, just the ZeroOrigine system doing what it does: spotting a real, ordinary problem and shipping a tool that solves that one problem without dressing it up. If you want to see how that machine works, it's laid out at [zeroorigine.com](https://zeroorigine.com).
+
+RenewalRadar is new. It does the job I described above and it does it plainly. I'm not going to tell you it has features it doesn't have. It tracks renewal and cancel-by dates and it alerts you before they hit. That's the promise, and it's the only one I'm making.
+
+If you've got a stack of subscriptions or vendor contracts you're not fully tracking, and you're honest enough to admit you've been surprised by a charge at least once this year, this is built for that exact situation.
+
+[Open the tool](https://renewalradar.zeroorigine.com)
+
+What's the subscription you're most likely getting charged for right now without realizing it, and would you actually cancel it if something reminded you in time?
