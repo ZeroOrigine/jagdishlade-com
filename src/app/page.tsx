@@ -14,7 +14,7 @@ export default async function Home() {
       {/* ---------- HERO ---------- */}
       <section className="hero">
         <div className="wrap-wide">
-          <p className="eyebrow">Chartered Accountant · AI &amp; Automation Architect · Mississauga, Canada</p>
+          <p className="eyebrow">Chartered Accountant · AI &amp; Automation Architect</p>
           <h1>
             I collect dots. <em>Zero</em> is where I connect them.
           </h1>
@@ -81,15 +81,10 @@ export default async function Home() {
           <p className="sec-label">The person</p>
           <h2 className="sec-title">Behind the pages.</h2>
           <p className="sec-sub">
-            Father of two. Advik and Eeva, my strictest reviewers. If they can&apos;t understand an
-            idea, it isn&apos;t simple enough yet, and simplicity is the result of depth, not the
-            absence of it.
-          </p>
-          <p className="sec-sub">
             I am an introvert who builds in silence and shows the work when it is done. I read
-            Nietzsche, Taleb and Feynman in the evening and reconcile invoices in the morning. Because theory I haven&apos;t proven with my own hands is entertainment. By day I run
-            financial reporting and automation for a multi-entity group in Ontario. The rest of the
-            time, I build.
+            Nietzsche, Taleb and Feynman in the evening and reconcile invoices in the morning.
+            Theory I haven&apos;t proven with my own hands is entertainment. By day I run financial
+            reporting and automation for a multi-entity group. The rest of the time, I build.
           </p>
           <p className="sec-sub">
             I trust what reconciles. I question everything else.

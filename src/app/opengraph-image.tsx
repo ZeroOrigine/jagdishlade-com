@@ -1,15 +1,15 @@
 import { ImageResponse } from 'next/og';
 
 // nodejs runtime (no `edge`): Netlify's edge bundler needs Deno, and this image doesn't need it.
-export const alt = 'Jagdish Lade. Failed. Returned to zero. Building from there.';
+export const alt = 'Jagdish Lade. I collect dots. Zero is where I connect them.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 /**
- * Satori (the renderer behind next/og) has two rules that will fail a production build:
- *   1. every element with more than one child MUST declare display:flex (or none)
- *   2. any glyph outside the loaded font (e.g. "●") triggers a dynamic font fetch. Which 400s
- * Both were caught by the real Netlify build. Kept to ASCII, flexed everywhere.
+ * The LinkedIn / social share card. Must match the site: paper, not ink.
+ * Satori rules that fail the build: every element with >1 child needs display:flex,
+ * and any glyph outside the loaded font (bullets, arrows) triggers a 400 font fetch.
+ * Kept to ASCII, flexed everywhere.
  */
 export default function OG() {
   return new ImageResponse(
@@ -21,28 +21,29 @@ export default function OG() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-          background: '#08090a',
-          padding: '70px',
+          background: '#faf7f0',
+          padding: '72px',
         }}
       >
-        <div style={{ display: 'flex', color: '#575e66', fontSize: 24, letterSpacing: 4 }}>
+        <div style={{ display: 'flex', color: '#8b9299', fontSize: 24, letterSpacing: 4 }}>
           JAGDISH LADE
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', fontSize: 78, color: '#e8eaec', lineHeight: 1.05 }}>
-            Failed. Returned to zero.
+          <div style={{ display: 'flex', fontSize: 82, color: '#16181b', lineHeight: 1.04 }}>
+            I collect dots.
           </div>
-          <div style={{ display: 'flex', fontSize: 78, color: '#c79a3e', lineHeight: 1.05 }}>
-            Building from there.
+          <div style={{ display: 'flex', fontSize: 82, lineHeight: 1.04 }}>
+            <span style={{ color: '#9a7422', fontStyle: 'italic' }}>Zero</span>
+            <span style={{ color: '#16181b' }}>&nbsp;is where I connect them.</span>
           </div>
-          <div style={{ display: 'flex', fontSize: 28, color: '#8b9299', marginTop: 30 }}>
-            Eight AI Minds. No employees. No investors. Honest numbers.
+          <div style={{ display: 'flex', fontSize: 27, color: '#5d6167', marginTop: 34 }}>
+            Chartered Accountant. AI and automation architect. On truth, and building.
           </div>
         </div>
 
-        <div style={{ display: 'flex', color: '#3ddc84', fontSize: 22, letterSpacing: 2 }}>
-          zeroorigine.com. Live
+        <div style={{ display: 'flex', color: '#9a7422', fontSize: 22, letterSpacing: 2 }}>
+          jagdishlade.com
         </div>
       </div>
     ),

@@ -89,7 +89,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        {/* The heartbeat sits above everything: this site is attached to a machine. */}
         <Nav />
         <main id="main">{children}</main>
         <Footer />

@@ -97,9 +97,8 @@ export default function Philosophy() {
             className="sub-note"
             style={{ marginTop: 28, fontFamily: 'var(--serif)', fontSize: '1rem', color: 'var(--text-muted)' }}
           >
-            Written by hand. Pen, five blank pages, one sitting, no edits.
-            <br />
-            December 2025. It became the name of a company, and then an operating system.
+Five pages, written in one sitting in December 2025. The name became a
+            company, and then the way I build everything.
           </p>
         </div>
       </header>

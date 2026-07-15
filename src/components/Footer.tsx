@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="foot">
       <div className="foot-in">
-        <span>© {new Date().getFullYear()} Jagdish Lade · Mississauga, Canada</span>
+        <span>© {new Date().getFullYear()} Jagdish Lade</span>
         <div className="foot-links">
           <Link href="/philosophy">Philosophy</Link>
           <Link href="/building">Building</Link>
