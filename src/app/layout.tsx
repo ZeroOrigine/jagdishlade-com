@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Fraunces, Newsreader, Inter_Tight, IBM_Plex_Mono } from 'next/font/google';
 import Nav from '@/components/Nav';
-import LiveStrip from '@/components/LiveStrip';
 import Footer from '@/components/Footer';
 import './globals.css';
 
@@ -53,7 +52,7 @@ export const metadata: Metadata = {
 // Set the theme before paint so the page never flashes the wrong colour.
 // Ink is the identity — the OS preference does not get to overrule it. Paper is a
 // deliberate choice the reader makes (and we remember it).
-const THEME_BOOT = `(function(){try{var t=localStorage.getItem('jl-theme')||'dark';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
+const THEME_BOOT = `(function(){try{var t=localStorage.getItem('jl-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
 
 const PERSON_LD = {
   '@context': 'https://schema.org',
@@ -76,7 +75,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       className={`${display.variable} ${serif.variable} ${sans.variable} ${mono.variable}`}
     >
       <head>
@@ -91,7 +90,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         {/* The heartbeat sits above everything: this site is attached to a machine. */}
-        <LiveStrip />
         <Nav />
         <main id="main">{children}</main>
         <Footer />

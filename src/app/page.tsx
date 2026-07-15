@@ -2,14 +2,9 @@ import Link from 'next/link';
 import Reveal from '@/components/Reveal';
 import SubscribeForm from '@/components/SubscribeForm';
 import { getPosts, formatDate } from '@/lib/writing';
-import { getStats, getBirthline, money, elapsed, readableThought, STATIONS } from '@/lib/zo';
-
-export const dynamic = 'force-dynamic'; // live numbers render per-request — never from a build-time snapshot
 
 export default async function Home() {
-  const [stats, birth, posts] = await Promise.all([getStats(), getBirthline(), getPosts()]);
-  const f = birth?.inflight ?? null;
-  const thought = readableThought(f?.thought ?? null);
+  const posts = await getPosts();
   const latest = posts.slice(0, 3);
 
   return (
@@ -19,189 +14,117 @@ export default async function Home() {
       {/* ---------- HERO ---------- */}
       <section className="hero">
         <div className="wrap-wide">
-          <p className="eyebrow">Chartered Accountant · AI architect · Mississauga</p>
+          <p className="eyebrow">Chartered Accountant · AI &amp; Automation Architect · Mississauga, Canada</p>
           <h1>
-            Failed. Returned to <em>zero</em>. Building from there.
+            I collect dots. <em>Zero</em> is where I connect them.
           </h1>
           <p className="lede">
-            I spent twenty years learning that numbers tell the truth. Then I learned that the
-            person most convinced by the numbers is the one presenting them. So I stripped it all
-            back and started building machines that <strong>cannot</strong> flatter me — they
-            publish what they spend, what they break, and what they refuse to ship.
+            Twenty years as a Chartered Accountant taught me that numbers are the oldest form of
+            truth-telling. Building with AI taught me the other half: the person most easily fooled
+            by the numbers is the one presenting them. So my work is simple to say and hard to do —
+            strip everything back to zero, keep only what is true, and build from there.
           </p>
           <div className="hero-ctas">
-            <Link href="/building" className="btn btn-live">
-              Watch the machine
+            <Link href="/philosophy" className="btn btn-live">
+              Read TRUTH — the manuscript
             </Link>
             <Link href="/writing" className="btn">
               Read the essays
             </Link>
           </div>
-
-          {/* Honest counters — every one of these comes from the live API. If it fails, nothing renders. */}
-          {stats && (
-            <div className="counters">
-              <div className="counter is-live">
-                <span className="n">
-                  {stats.liveCount}
-                  <span className="dim">/{stats.totalCount}</span>
-                </span>
-                <span className="l">products live / attempted</span>
-              </div>
-              <div className="counter">
-                <span className="n">{money(stats.totalSpend)}</span>
-                <span className="l">spent building them</span>
-              </div>
-              <div className="counter is-zero">
-                <span className="n">$0</span>
-                <span className="l">revenue — still</span>
-              </div>
-              <div className="counter">
-                <span className="n">0</span>
-                <span className="l">employees, investors, permission</span>
-              </div>
-              <div className="counter-src">
-                read live from zeroorigine.com · not typed by me · refreshed every 60s
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
-      {/* ---------- THE MACHINE ---------- */}
+      {/* ---------- THREE BELIEFS ---------- */}
       <section>
         <div className="wrap-wide">
-          <p className="sec-label">Live</p>
-          {/* The headline follows the machine's ACTUAL state. A halted product must never be
-              described as "being born" — that is precisely the comfortable lie this site exists
-              to make impossible. Caught on the first live deploy: RigFile was qa_failed while the
-              page cheerfully announced a birth. */}
-          <h2 className="sec-title">
-            {!f
-              ? 'The machine, when it wakes.'
-              : f.halted
-                ? `${f.name} is stuck, and I am not going to hide it.`
-                : 'Something is being born right now.'}
-          </h2>
-          <p className="sec-sub">
-            ZeroOrigine is eight AI Minds with a constitution and a budget. They research a problem,
-            argue about whether it deserves to exist, build it, refuse to ship it when it isn&apos;t
-            good enough, and launch it. I am not in the loop. This panel is their actual work — not
-            a demo of it.
-          </p>
-
-          <div className={`machine${f && !f.halted ? ' on' : ''}`}>
-            <div className="machine-head">
-              <span>{f ? f.name : 'the line'}</span>
-              <span className="live">
-                {f ? (f.halted ? '⏸ halted' : '● building') : '○ idle'}
-              </span>
-            </div>
-
-            <div className="machine-body">
-              {!f ? (
-                <span className="idle">
-                  No product is on the line at this moment. When one is, this panel shows the Mind
-                  that is working and the last thing it thought — unedited.
-                </span>
-              ) : f.halted ? (
-                <span className="idle">
-                  {f.name} is halted at {STATIONS[f.station] ?? 'the line'} — status{' '}
-                  <code>{f.status}</code>. Its own QA refused to let it ship, so it is sitting
-                  there, costing me {money(f.cost)}, until it is fixed. This is what the inside of
-                  building looks like. Most sites would show you a green tick.
-                </span>
-              ) : thought ? (
-                <>
-                  <span className="who">{f.thoughtBy ?? 'A Mind'}</span>
-                  {' → '}
-                  {thought}
-                </>
-              ) : (
-                <span className="idle">
-                  {f.thoughtBy ?? 'A Mind'} is emitting source code, not sentences, at this exact
-                  second — so there is nothing honest to quote here. The stage and the money below
-                  are real.
-                </span>
-              )}
-            </div>
-
-            {f && (
-              <>
-                <div className="rail" aria-label="Pipeline stage">
-                  {STATIONS.map((s, i) => (
-                    <div
-                      key={s}
-                      className={`station${i < f.station ? ' done' : ''}${i === f.station ? ' now' : ''}`}
-                    >
-                      <div className="bar" />
-                      <div className="s">{s}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="machine-foot">
-                  <span>
-                    alive for <b className="mono">{elapsed(f.born)}</b>
-                  </span>
-                  <span>
-                    spent so far <b className="mono">{money(f.cost)}</b>
-                  </span>
-                  <span>
-                    humans involved <b className="mono">0</b>
-                  </span>
-                </div>
-              </>
-            )}
-          </div>
-
-          {!birth && (
-            <p className="sub-note" style={{ marginTop: 14 }}>
-              The machine&apos;s API didn&apos;t answer just now. Rather than show you a number I
-              remembered, I&apos;m showing you nothing.
-            </p>
-          )}
-        </div>
-      </section>
-
-      {/* ---------- THE THREE DOORS ---------- */}
-      <section>
-        <div className="wrap-wide">
-          <p className="sec-label">Three ways in</p>
-          <h2 className="sec-title">Pick the thread you want to pull.</h2>
+          <p className="sec-label">What I believe</p>
+          <h2 className="sec-title">Three ideas run through everything I do.</h2>
           <div className="doors">
-            <Link href="/philosophy" className="door reveal" data-track="philosophy">
-              <div className="k">Philosophy</div>
-              <h3>TRUTH</h3>
+            <div className="door reveal" data-track="philosophy">
+              <div className="k">Back to Zero</div>
+              <h3>Zero is not nothing.</h3>
               <p>
-                Five pages, written by hand, in one sitting. On conditioning, on the pain of
-                seeking, and on why going back to zero is not a metaphor.
+                Zero is potential. Every skill, every product, every life begins there. Most people
+                begin once and spend decades protecting that one beginning. I practice returning to
+                zero — deliberately, without fear. What survives the return is truth.
               </p>
-              <span className="go">read the manuscript →</span>
-            </Link>
+            </div>
 
-            <Link href="/building" className="door reveal" data-track="building">
-              <div className="k">Building</div>
-              <h3>ZeroOrigine</h3>
+            <div className="door reveal" data-track="building">
+              <div className="k">Collecting dots</div>
+              <h3>Dots, not degrees.</h3>
               <p>
-                {stats
-                  ? `${stats.liveCount} products alive, ${money(stats.totalSpend)} spent, $0 earned. Every figure pulled from the machine, including the ones that embarrass me.`
-                  : 'Honest numbers, live from the machine — including the ones that embarrass me.'}
+                An accounting anomaly connects to a machine-learning pattern. A child&apos;s question
+                breaks a business model. A line of Nietzsche fixes a debugging session. Knowledge is
+                cheap. The connections between fields nobody puts together — that is the unfair
+                advantage.
               </p>
-              <span className="go">open the ledger →</span>
-            </Link>
+            </div>
 
-            <Link href="/writing" className="door reveal" data-track="writing">
-              <div className="k">Writing</div>
-              <h3>Essays</h3>
+            <div className="door reveal" data-track="writing">
+              <div className="k">The mirror</div>
+              <h3>To command AI, study your own mind.</h3>
               <p>
-                On truth, failure, accounting, Feynman, and what happens when you delete every step
-                that only exists because a human used to do it.
+                Not the machine&apos;s architecture — yours. How you decide. What you assume without
+                noticing. Which steps in your work exist only because humans get tired and forget.
+                Describe your thinking clearly, remove the biology, and the machine becomes an
+                extension of you.
               </p>
-              <span className="go">
-                {posts.length} {posts.length === 1 ? 'essay' : 'essays'} →
-              </span>
-            </Link>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* ---------- THE PERSON ---------- */}
+      <section>
+        <div className="wrap">
+          <p className="sec-label">The person</p>
+          <h2 className="sec-title">Behind the pages.</h2>
+          <p className="sec-sub">
+            Father of two — Advik and Eeva, my strictest reviewers. If they can&apos;t understand an
+            idea, it isn&apos;t simple enough yet, and simplicity is the result of depth, not the
+            absence of it.
+          </p>
+          <p className="sec-sub">
+            I am an introvert who builds in silence and shows the work when it is done. I read
+            Nietzsche, Taleb and Feynman in the evening and reconcile invoices in the morning —
+            because theory I haven&apos;t proven with my own hands is entertainment. By day I run
+            financial reporting and automation for a multi-entity group in Ontario. The rest of the
+            time, I build.
+          </p>
+          <p className="sec-sub">
+            I trust what reconciles. I question everything else.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------- WHAT I BUILD ---------- */}
+      <section>
+        <div className="wrap">
+          <p className="sec-label">What I build</p>
+          <h2 className="sec-title">Machines that don&apos;t need me.</h2>
+          <p className="sec-sub">
+            My rule for innovation is subtraction: break the goal into steps, challenge every step,
+            and delete the ones that exist only because a human used to do them. What remains is the
+            pure path — and that is what I hand to the machine.
+          </p>
+          <p className="sec-sub">
+            <strong>ZeroOrigine</strong> is the furthest expression of that idea — an autonomous
+            ecosystem of eight AI Minds with a constitution, which research, build, refuse to ship
+            when the work isn&apos;t good enough, and launch software with no one in the loop. It
+            keeps its own ledger, every dollar and every failure, published by the machine itself at{' '}
+            <a href="https://zeroorigine.com" target="_blank" rel="noopener noreferrer">zeroorigine.com</a>.
+            I don&apos;t repeat its numbers here. The machine speaks for itself.
+          </p>
+          <p className="sec-sub">
+            <strong>Speed CA</strong> is the same philosophy pointed at my own profession — a
+            platform for Chartered Accountants in India, built from twenty years inside the work, at{' '}
+            <a href="https://ai2all.ai" target="_blank" rel="noopener noreferrer">ai2all.ai</a>.
+          </p>
+          <p className="sec-sub" style={{ marginTop: 8 }}>
+            <Link href="/building">The longer story of what I build, and why →</Link>
+          </p>
         </div>
       </section>
 
@@ -233,7 +156,7 @@ export default async function Home() {
       {/* ---------- QUOTE ---------- */}
       <section>
         <div className="wrap">
-          <p className="quote reveal">“Be original. Pure. Clean. Untouched. Be Zero.”</p>
+          <p className="quote reveal">&ldquo;Be original. Pure. Clean. Untouched. Be Zero.&rdquo;</p>
           <p className="quote-by">TRUTH · page V</p>
         </div>
       </section>
@@ -241,11 +164,11 @@ export default async function Home() {
       {/* ---------- SUBSCRIBE ---------- */}
       <section>
         <div className="wrap">
-          <p className="sec-label">Watch it happen</p>
-          <h2 className="sec-title">I&apos;ll tell you the moment a Mind starts building.</h2>
+          <p className="sec-label">Stay close</p>
+          <h2 className="sec-title">One message when I publish something new.</h2>
           <p className="sec-sub">
-            Not a newsletter. One message when a build starts — so you can open the page and watch a
-            product go from a question to a live URL, mistakes included.
+            Not a newsletter. No schedule, no noise — a short note when there is a new essay, a new
+            manuscript page, or something worth your attention. Nothing else.
           </p>
           <SubscribeForm />
         </div>
