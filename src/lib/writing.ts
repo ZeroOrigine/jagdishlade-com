@@ -16,6 +16,10 @@ export interface Post {
   date: string; // YYYY-MM-DD
   summary: string;
   tags: string[];
+  series: 'ideas' | 'launch' | 'speed-ca';
+  product: string | null;
+  productName: string | null;
+  url: string | null;
   readingMinutes: number;
   body: string;
 }
@@ -33,12 +37,18 @@ export function getPosts(): Post[] {
     .map((f) => {
       const raw = fs.readFileSync(path.join(DIR, f), 'utf8');
       const { data, content } = matter(raw);
+      const slug = f.replace(/\.mdx$/, '');
+      const series = (data.series as Post['series']) || (slug.startsWith('launch-') ? 'launch' : 'ideas');
       return {
-        slug: f.replace(/\.mdx$/, ''),
+        slug,
         title: String(data.title ?? f),
         date: String(data.date ?? ''),
         summary: String(data.summary ?? ''),
         tags: Array.isArray(data.tags) ? (data.tags as string[]) : [],
+        series,
+        product: data.product ? String(data.product) : null,
+        productName: data.productName ? String(data.productName) : null,
+        url: data.url ? String(data.url) : null,
         readingMinutes: readingMinutes(content),
         body: content,
       };

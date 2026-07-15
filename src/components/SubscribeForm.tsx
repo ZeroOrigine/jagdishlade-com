@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 /**
  * Essay subscription. Email only, straight into the Resend audience.
@@ -7,8 +7,10 @@ import { useState } from 'react';
  */
 export default function SubscribeForm() {
   const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [err, setErr] = useState('');
+  const mounted = useRef(Date.now());
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -18,7 +20,7 @@ export default function SubscribeForm() {
       const r = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company, elapsed: Date.now() - mounted.current }),
       });
       if (r.ok) setState('done');
       else {
@@ -54,6 +56,7 @@ export default function SubscribeForm() {
         <button className="btn btn-primary" type="submit" disabled={state === 'sending'}>
           {state === 'sending' ? 'Adding…' : 'Get new essays'}
         </button>
+        <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1 }} />
       </form>
       <p className="form-note">
         {state === 'error'

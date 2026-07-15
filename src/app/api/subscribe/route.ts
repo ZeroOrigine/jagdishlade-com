@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { clientIp, rateLimited, tooFast } from '@/lib/antispam';
 
 export const runtime = 'nodejs';
 
@@ -7,12 +8,19 @@ export const runtime = 'nodejs';
  * Honest 503 if not configured, rather than pretending it worked.
  */
 export async function POST(req: Request) {
-  let email = '';
+  let email = '', company = '', elapsed: unknown;
   try {
-    email = String((await req.json()).email || '').trim();
+    const b = await req.json();
+    email = String(b.email || '').trim();
+    company = String(b.company || '');
+    elapsed = b.elapsed;
   } catch {
     return NextResponse.json({ ok: false, error: 'bad request' }, { status: 400 });
   }
+  if (company) return NextResponse.json({ ok: true }); // honeypot
+  if (tooFast(elapsed)) return NextResponse.json({ ok: true }); // time-trap
+  if (rateLimited(`sub:${clientIp(req)}`, 5, 10 * 60 * 1000))
+    return NextResponse.json({ ok: false, error: 'too many attempts, please try again later' }, { status: 429 });
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: 'please enter a valid email' }, { status: 400 });
   }

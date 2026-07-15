@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { clientIp, rateLimited, tooFast, looksLikeSpam } from '@/lib/antispam';
 
 /**
  * Contact -> Gmail. A visitor's message is emailed straight to Jagdish's inbox,
@@ -8,7 +9,7 @@ import { NextResponse } from 'next/server';
  * person to email directly, rather than pretending the message was delivered.
  */
 export async function POST(req: Request) {
-  let body: { name?: string; email?: string; message?: string; company?: string };
+  let body: { name?: string; email?: string; message?: string; company?: string; elapsed?: number };
   try {
     body = await req.json();
   } catch {
@@ -20,6 +21,11 @@ export async function POST(req: Request) {
 
   // Honeypot: bots fill hidden fields. A real person leaves it empty.
   if (body.company) return NextResponse.json({ ok: true });
+  // Time-trap: a form submitted in under 2.5s is automated.
+  if (tooFast(body.elapsed)) return NextResponse.json({ ok: true });
+  // Rate limit: 3 messages per 10 minutes per IP.
+  if (rateLimited(`contact:${clientIp(req)}`, 3, 10 * 60 * 1000))
+    return NextResponse.json({ ok: false, error: 'too many messages, please try again later' }, { status: 429 });
 
   if (!name || !message || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: 'please fill in your name, a valid email, and a message' }, { status: 400 });
@@ -27,6 +33,7 @@ export async function POST(req: Request) {
   if (message.length > 5000) {
     return NextResponse.json({ ok: false, error: 'message too long' }, { status: 400 });
   }
+  if (looksLikeSpam(message)) return NextResponse.json({ ok: true }); // silently drop
 
   const key = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO || 'cajagdishlade@gmail.com';

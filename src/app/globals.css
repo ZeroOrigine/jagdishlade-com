@@ -572,7 +572,7 @@ section { padding: clamp(40px, 5.5vw, 76px) 0; }
 /* =========================================================
    CONNECT
    ========================================================= */
-.links { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.links { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; max-width: 640px; }
 .link-row {
   display: flex; align-items: center; gap: 16px;
   background: var(--bg); padding: 18px 22px;
@@ -771,3 +771,31 @@ section { padding: clamp(40px, 5.5vw, 76px) 0; }
   .readnext-track { grid-template-columns: 1fr; }
   .filters { gap: 10px; }
 }
+
+/* top-of-essay product callout (launch essays) */
+.product-callout {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  max-width: var(--w-read);
+  border: 1px solid var(--border); border-left: 2px solid var(--green);
+  border-radius: 10px; background: var(--surface);
+  padding: 14px 20px; margin-bottom: var(--s4); text-decoration: none;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.product-callout:hover { text-decoration: none; transform: translateY(-1px); border-color: color-mix(in srgb, var(--green) 45%, var(--border)); }
+.product-callout .pc-label {
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-dim);
+}
+.product-callout .pc-name { font-family: var(--display); font-size: 1.1rem; color: var(--text); }
+.product-callout .pc-go { margin-left: auto; font-family: var(--mono); font-size: 0.76rem; color: var(--green); }
+
+/* essay search */
+.filter-search { flex: 0 0 auto; }
+.filter-search input {
+  background: var(--surface); border: 1px solid var(--border); color: var(--text);
+  padding: 8px 14px; border-radius: 20px; font-family: var(--sans); font-size: 0.85rem;
+  width: 190px; max-width: 100%;
+}
+.filter-search input::placeholder { color: var(--text-dim); }
+.filter-search input:focus { outline: none; border-color: var(--blue); }
+@media (max-width: 620px) { .filter-search { width: 100%; } .filter-search input { width: 100%; } }

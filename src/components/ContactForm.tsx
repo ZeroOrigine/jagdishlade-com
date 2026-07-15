@@ -1,9 +1,10 @@
 'use client';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 export default function ContactForm() {
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [err, setErr] = useState('');
+  const mounted = useRef(Date.now());
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -15,6 +16,7 @@ export default function ContactForm() {
       email: String(fd.get('email') || ''),
       message: String(fd.get('message') || ''),
       company: String(fd.get('company') || ''), // honeypot
+      elapsed: Date.now() - mounted.current,
     };
     try {
       const r = await fetch('/api/contact', {

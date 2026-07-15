@@ -80,8 +80,10 @@ OUTPUT ONLY valid MDX: frontmatter first, then body. Exactly this frontmatter sh
 title: "<hook-style title, sentence case, NOT 'Introducing X'>"
 date: "<TODAY>"
 summary: "<one honest sentence, the promise, no em dash>"
-tags: ["launch", "<one category word>"]
+tags: ["launch", "<one lowercase category word>"]
+series: "launch"
 product: "<slug>"
+productName: "<the exact product name>"
 url: "<product url>"
 ---
 

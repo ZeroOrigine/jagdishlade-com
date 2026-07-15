@@ -74,6 +74,14 @@ export default function Post({ params }: { params: { slug: string } }) {
           </div>
         </header>
 
+        {p.series === 'launch' && p.url && (
+          <a className="product-callout" href={p.url} target="_blank" rel="noopener noreferrer">
+            <span className="pc-label">The product</span>
+            <span className="pc-name">{p.productName || 'Open it'}</span>
+            <span className="pc-go">Visit ↗</span>
+          </a>
+        )}
+
         <div className="prose">
           <MDXRemote source={p.body} components={mdxComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </div>

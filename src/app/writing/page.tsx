@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function Writing() {
-  const posts = getPosts().map((p) => ({ ...p, dateLabel: formatDate(p.date) }));
+  const posts = getPosts().map((p) => ({ slug: p.slug, title: p.title, date: p.date, summary: p.summary, tags: p.tags, series: p.series, readingMinutes: p.readingMinutes, dateLabel: formatDate(p.date) }));
 
   return (
     <>
