@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Constellation from '@/components/Constellation';
-import SubscribeForm from '@/components/SubscribeForm';
 import WritingList from '@/components/WritingList';
 import { getPosts, formatDate } from '@/lib/writing';
 
@@ -40,14 +39,6 @@ export default function Writing() {
             <WritingList posts={posts} />
           )}
 
-          <div className="subscribe-block">
-            <h3>Get new essays by email.</h3>
-            <p>When the machine ships a product, or I finish a piece of writing, it reaches you the same day. Nothing else.</p>
-            <SubscribeForm />
-          </div>
-          <p className="sub-note" style={{ marginTop: 20 }}>
-            Or subscribe by <a href="/rss.xml">RSS</a>, for people who still own their own reading list.
-          </p>
         </div>
       </section>
     </>

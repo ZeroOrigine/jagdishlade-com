@@ -81,9 +81,13 @@ export default function Post({ params }: { params: { slug: string } }) {
         <ReadNext items={related} />
 
         <div className="subscribe-block">
-          <h3>More where this came from.</h3>
-          <p>New essays, sent the day they publish. No schedule, no noise.</p>
-          <SubscribeForm />
+          <div className="sb-copy">
+            <h3>More where this came from.</h3>
+            <p>New essays, sent the day they publish. No schedule, no noise.</p>
+          </div>
+          <div className="sb-form">
+            <SubscribeForm />
+          </div>
         </div>
         <p className="sub-note" style={{ paddingBottom: 72 }}>
           <Link href="/writing">← All essays</Link> · If this made you think, tell me:{' '}
