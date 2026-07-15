@@ -18,7 +18,7 @@ export const maxDuration = 60;
 
 const REPO = process.env.GITHUB_REPO || 'ZeroOrigine/jagdishlade-com';
 const SITE = process.env.SITE_URL || 'https://jagdishlade.com';
-const BANNED = [' first ', ' only ', 'revolutionary', 'nobody else', 'game-changer', 'game changer', 'world-class', 'best-in-class', 'cutting-edge'];
+const BANNED = ['revolutionary', 'nobody else', 'game-changer', 'game changer', 'world-class', 'best-in-class', 'cutting-edge', 'first-of-its-kind', 'first of its kind', 'the only tool', 'the only app', 'the only platform', 'unlike any other'];
 
 function gh(path: string, init: RequestInit = {}) {
   return fetch(`https://api.github.com/repos/${REPO}/${path}`, {
@@ -69,7 +69,7 @@ You are writing a LEAD-MAGNET essay for his personal site about a product his ma
 
 HARD RULES:
 - Only claim what the provided product facts support. Invent NO features, NO user counts, NO testimonials, NO metrics. If you cannot ground a claim in the facts, cut it.
-- Never use the words first, only, revolutionary, best, nobody else, game-changer, or any superiority claim.
+- Never make a superiority or ranking claim: no revolutionary, best, first-of-its-kind, the only one, nobody else, game-changer. Ordinary uses of the words first or only in a sentence are fine; ranking claims are not.
 - NEVER use an em dash. Use a period, comma, or colon instead.
 - Exactly ONE call to action, linking to the product URL once, honestly framed.
 - Structure: bold hook, then the real problem a specific person has, then a dot-connection to a wider truth, then how this product removes a step, then an honest note that his machine built it (one link to zeroorigine.com allowed), then one-line CTA to the product URL, then end with a genuine question that invites a reply.
