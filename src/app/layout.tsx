@@ -30,17 +30,17 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://jagdishlade.com'),
   title: {
-    default: 'Jagdish Lade — failed, returned to zero, building from there',
+    default: 'Jagdish Lade — I collect dots. Zero is where I connect them.',
     template: '%s — Jagdish Lade',
   },
   description:
-    'Chartered Accountant turned AI architect. Building ZeroOrigine — an autonomous ecosystem where eight AI Minds research, build and launch software with no human in the loop. Honest numbers, live from the machine.',
+    'Chartered Accountant and AI & Automation architect. On truth, Back to Zero, collecting dots, and building machines that don\'t need me.',
   openGraph: {
     type: 'website',
     url: 'https://jagdishlade.com',
     siteName: 'Jagdish Lade',
     title: 'Jagdish Lade',
-    description: 'Failed. Returned to zero. Building from there.',
+    description: 'On truth, Back to Zero, collecting dots — and building machines that don\'t need me.',
   },
   twitter: { card: 'summary_large_image', creator: '@jagdishlade' },
   alternates: {
