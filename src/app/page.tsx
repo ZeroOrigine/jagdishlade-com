@@ -78,23 +78,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ---------- THE PERSON ---------- */}
-      <section>
-        <div className="wrap">
-          <p className="sec-label">The person</p>
-          <h2 className="sec-title">Behind the pages.</h2>
-          <p className="sec-sub">
-            I am an introvert who builds in silence and shows the work when it is done. I read
-            Nietzsche, Taleb and Feynman in the evening and reconcile invoices in the morning.
-            Theory I haven&apos;t proven with my own hands is entertainment. By day I run financial
-            reporting and automation for a multi-entity group. The rest of the time, I build.
-          </p>
-          <p className="sec-sub">
-            I trust what reconciles. I question everything else.
-          </p>
-        </div>
-      </section>
-
       {/* ---------- WHAT I BUILD ---------- */}
       <section>
         <div className="wrap">
