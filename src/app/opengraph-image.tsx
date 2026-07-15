@@ -33,8 +33,8 @@ export default function OG() {
           <div style={{ display: 'flex', fontSize: 82, color: '#16181b', lineHeight: 1.04 }}>
             I collect dots.
           </div>
-          <div style={{ display: 'flex', fontSize: 82, lineHeight: 1.04 }}>
-            <span style={{ color: '#9a7422', fontStyle: 'italic', paddingRight: '0.32em' }}>Zero</span>
+          <div style={{ display: 'flex', gap: '0.30em', fontSize: 82, lineHeight: 1.04 }}>
+            <span style={{ color: '#9a7422', fontStyle: 'italic' }}>Zero</span>
             <span style={{ color: '#16181b' }}>is where I connect them.</span>
           </div>
           <div style={{ display: 'flex', fontSize: 27, color: '#5d6167', marginTop: 34 }}>
