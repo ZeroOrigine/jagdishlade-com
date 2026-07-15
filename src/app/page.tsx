@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Reveal from '@/components/Reveal';
-import SubscribeForm from '@/components/SubscribeForm';
+import ContactForm from '@/components/ContactForm';
 import { getPosts, formatDate } from '@/lib/writing';
 
 export default async function Home() {
@@ -154,16 +154,17 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ---------- SUBSCRIBE ---------- */}
+      {/* ---------- CONTACT ---------- */}
       <section>
         <div className="wrap">
-          <p className="sec-label">Stay close</p>
-          <h2 className="sec-title">One message when I publish something new.</h2>
+          <p className="sec-label">Get in touch</p>
+          <h2 className="sec-title">Say something. It reaches me directly.</h2>
           <p className="sec-sub">
-            Not a newsletter. No schedule, no noise. A short note when there is a new essay, a new
-            manuscript page, or something worth your attention. Nothing else.
+            No contact team, no autoresponder. If an idea here made you think, or you want to talk
+            about building, accounting, or starting over, write to me. It lands in my inbox and I
+            read every message.
           </p>
-          <SubscribeForm />
+          <ContactForm />
         </div>
       </section>
     </>

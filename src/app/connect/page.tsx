@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import SubscribeForm from '@/components/SubscribeForm';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Connect. I read every message',
-  description: 'No contact form, no autoresponder. Email, LinkedIn, X, GitHub. A person on the other end.',
+  description: 'No autoresponders, no team. Email, LinkedIn, X, GitHub, or a form that reaches the same inbox.',
   alternates: { canonical: '/connect' },
 };
 
@@ -26,8 +26,8 @@ export default function Connect() {
           </h1>
           <p className="lede">
             If something here made you think, or you want to talk about building, failing, or
-            starting over. I&apos;m here. No contact form. No autoresponders. A person on the other
-            end.
+            starting over, I&apos;m here. No autoresponders, no team. Whichever way you reach me
+            below, it lands with the same person.
           </p>
         </div>
       </section>
@@ -47,9 +47,12 @@ export default function Connect() {
 
       <section>
         <div className="wrap">
-          <p className="sec-label">Or just watch</p>
-          <h2 className="sec-title">One message, when a build starts.</h2>
-          <SubscribeForm />
+          <p className="sec-label">Write to me</p>
+          <h2 className="sec-title">A message, straight to my inbox.</h2>
+          <p className="sec-sub">
+            Prefer a form to your mail client? This does the same thing. It reaches the same person.
+          </p>
+          <ContactForm />
         </div>
       </section>
 

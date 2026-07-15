@@ -632,3 +632,27 @@ section { padding: clamp(60px, 9vw, 110px) 0; }
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
+.contact { display: flex; flex-direction: column; gap: 12px; max-width: 560px; }
+.contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.contact input,
+.contact textarea {
+  width: 100%;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--text); padding: 13px 15px; border-radius: 8px;
+  font-family: var(--sans); font-size: 0.95rem; line-height: 1.5;
+}
+.contact textarea { resize: vertical; min-height: 120px; }
+.contact input::placeholder,
+.contact textarea::placeholder { color: var(--text-dim); }
+.contact input:focus,
+.contact textarea:focus { outline: none; border-color: var(--blue); }
+.contact .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.contact-send { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 2px; }
+.form-note { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); line-height: 1.5; }
+@media (max-width: 520px) {
+  .contact-row { grid-template-columns: 1fr; }
+}
