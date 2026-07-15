@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { clientIp, rateLimited, tooFast, looksLikeSpam } from '@/lib/antispam';
+import { clientIp, rateLimited, tooFast, looksLikeSpam, turnstileOk } from '@/lib/antispam';
 
 /**
  * Contact -> Gmail. A visitor's message is emailed straight to Jagdish's inbox,
@@ -9,7 +9,7 @@ import { clientIp, rateLimited, tooFast, looksLikeSpam } from '@/lib/antispam';
  * person to email directly, rather than pretending the message was delivered.
  */
 export async function POST(req: Request) {
-  let body: { name?: string; email?: string; message?: string; company?: string; elapsed?: number };
+  let body: { name?: string; email?: string; message?: string; company?: string; elapsed?: number; cfToken?: string };
   try {
     body = await req.json();
   } catch {
@@ -26,6 +26,8 @@ export async function POST(req: Request) {
   // Rate limit: 3 messages per 10 minutes per IP.
   if (rateLimited(`contact:${clientIp(req)}`, 3, 10 * 60 * 1000))
     return NextResponse.json({ ok: false, error: 'too many messages, please try again later' }, { status: 429 });
+  if (!(await turnstileOk(body.cfToken, clientIp(req))))
+    return NextResponse.json({ ok: false, error: 'anti-bot check failed, please retry' }, { status: 403 });
 
   if (!name || !message || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return NextResponse.json({ ok: false, error: 'please fill in your name, a valid email, and a message' }, { status: 400 });

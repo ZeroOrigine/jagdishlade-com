@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useState } from 'react';
+import Turnstile from './Turnstile';
 
 /**
  * Essay subscription. Email only, straight into the Resend audience.
@@ -11,6 +12,7 @@ export default function SubscribeForm() {
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [err, setErr] = useState('');
   const mounted = useRef(Date.now());
+  const [cfToken, setCfToken] = useState('');
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function SubscribeForm() {
       const r = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email, company, elapsed: Date.now() - mounted.current }),
+        body: JSON.stringify({ email, company, elapsed: Date.now() - mounted.current, cfToken }),
       });
       if (r.ok) setState('done');
       else {
@@ -58,6 +60,7 @@ export default function SubscribeForm() {
         </button>
         <input type="text" value={company} onChange={(e) => setCompany(e.target.value)} tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1 }} />
       </form>
+      <Turnstile onVerify={setCfToken} />
       <p className="form-note">
         {state === 'error'
           ? `${err} You can also just email me: cajagdishlade@gmail.com`

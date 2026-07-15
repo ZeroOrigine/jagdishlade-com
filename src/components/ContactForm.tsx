@@ -1,10 +1,12 @@
 'use client';
 import { useRef, useState } from 'react';
+import Turnstile from './Turnstile';
 
 export default function ContactForm() {
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [err, setErr] = useState('');
   const mounted = useRef(Date.now());
+  const [cfToken, setCfToken] = useState('');
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -17,6 +19,7 @@ export default function ContactForm() {
       message: String(fd.get('message') || ''),
       company: String(fd.get('company') || ''), // honeypot
       elapsed: Date.now() - mounted.current,
+      cfToken,
     };
     try {
       const r = await fetch('/api/contact', {
@@ -55,6 +58,7 @@ export default function ContactForm() {
       <textarea name="message" required rows={5} placeholder="What&apos;s on your mind?" aria-label="Your message" />
       {/* honeypot: hidden from humans, catches bots */}
       <input name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hp" />
+      <Turnstile onVerify={setCfToken} />
       <div className="contact-send">
         <button className="btn btn-primary" type="submit" disabled={state === 'sending'}>
           {state === 'sending' ? 'Sending…' : 'Send message'}

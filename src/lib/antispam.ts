@@ -38,3 +38,27 @@ export function looksLikeSpam(message: string): boolean {
   if (/\b(viagra|casino|crypto giveaway|forex|seo services|buy followers)\b/i.test(message)) return true;
   return false;
 }
+
+/**
+ * Verify a Cloudflare Turnstile token. Enforced ONLY when TURNSTILE_SECRET_KEY is
+ * set; otherwise returns true (the other layers still apply). Fail-closed when a
+ * secret exists but the token is missing/invalid.
+ */
+export async function turnstileOk(token: unknown, ip?: string): Promise<boolean> {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true; // not configured yet
+  if (!token || typeof token !== 'string') return false;
+  try {
+    const body = new URLSearchParams({ secret, response: token });
+    if (ip) body.set('remoteip', ip);
+    const r = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body,
+    });
+    const d = (await r.json()) as { success?: boolean };
+    return d.success === true;
+  } catch {
+    return false; // fail closed
+  }
+}
