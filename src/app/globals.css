@@ -799,3 +799,12 @@ section { padding: clamp(40px, 5.5vw, 76px) 0; }
 .filter-search input::placeholder { color: var(--text-dim); }
 .filter-search input:focus { outline: none; border-color: var(--blue); }
 @media (max-width: 620px) { .filter-search { width: 100%; } .filter-search input { width: 100%; } }
+
+/* fund a birth CTA */
+.fund-card {
+  border: 1px solid var(--border); border-left: 2px solid var(--gold);
+  border-radius: 12px; background: var(--surface); padding: 34px 32px;
+}
+.fund-card .sec-sub { margin-bottom: var(--s3); }
+.fund-ctas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.fund-note { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); max-width: 42ch; line-height: 1.5; }

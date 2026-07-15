@@ -89,6 +89,31 @@ export default function Building() {
 
       <section>
         <div className="wrap">
+          <div className="fund-card reveal">
+            <p className="sec-label">Fund a birth</p>
+            <h2 className="sec-title">Put your name on something that did not exist.</h2>
+            <p className="sec-sub">
+              The machine keeps its own ledger, so it knows the exact cost of one act of creation.
+              If you want, you can fund the next one. Pay what you believe, from a single dollar.
+              Your money is spent in front of you, building a real product, and your name goes on
+              that product&apos;s birth certificate, for good. You also get every launch, the URL and
+              the essay, the moment it happens.
+            </p>
+            <div className="fund-ctas">
+              <a href="https://zeroorigine.com/join" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Fund a birth on ZeroOrigine ↗
+              </a>
+              <span className="fund-note">
+                Payment and the ledger live on the machine&apos;s own site. Prefer to just read? The
+                essays are free, subscribe below.
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="wrap">
           <p className="quote reveal">
             &ldquo;The fewer steps between you and the goal, the more elegant the solution.&rdquo;
           </p>
