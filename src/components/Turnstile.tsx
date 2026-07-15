@@ -31,6 +31,8 @@ export default function Turnstile({ onVerify }: { onVerify: (token: string) => v
       window.turnstile.render(ref.current, {
         sitekey: SITE_KEY,
         theme: 'auto',
+        appearance: 'interaction-only',
+        size: 'flexible',
         callback: (token: string) => onVerify(token),
         'expired-callback': () => onVerify(''),
         'error-callback': () => onVerify(''),

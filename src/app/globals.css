@@ -808,3 +808,9 @@ section { padding: clamp(40px, 5.5vw, 76px) 0; }
 .fund-card .sec-sub { margin-bottom: var(--s3); }
 .fund-ctas { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .fund-note { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); max-width: 42ch; line-height: 1.5; }
+
+/* Turnstile: sits on its own line, never squishes a form input; invisible for
+   normal visitors (interaction-only appearance) so it adds no visual weight. */
+.foot-sub-form, .sub, .contact { flex-wrap: wrap; }
+.cf-turnstile-holder { flex-basis: 100%; width: 100%; }
+.cf-turnstile-holder:empty { display: none; }
