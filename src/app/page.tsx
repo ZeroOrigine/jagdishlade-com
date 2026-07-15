@@ -21,12 +21,11 @@ export default async function Home() {
           <p className="lede">
             Twenty years as a Chartered Accountant taught me that numbers are the oldest form of
             truth-telling. Building with AI taught me the other half: the person most easily fooled
-            by the numbers is the one presenting them. So my work is simple to say and hard to do —
-            strip everything back to zero, keep only what is true, and build from there.
+            by the numbers is the one presenting them. So my work is simple to say and hard to do. Strip everything back to zero, keep only what is true, and build from there.
           </p>
           <div className="hero-ctas">
             <Link href="/philosophy" className="btn btn-live">
-              Read TRUTH — the manuscript
+              Read TRUTH. The manuscript
             </Link>
             <Link href="/writing" className="btn">
               Read the essays
@@ -47,7 +46,7 @@ export default async function Home() {
               <p>
                 Zero is potential. Every skill, every product, every life begins there. Most people
                 begin once and spend decades protecting that one beginning. I practice returning to
-                zero — deliberately, without fear. What survives the return is truth.
+                zero. Deliberately, without fear. What survives the return is truth.
               </p>
             </div>
 
@@ -57,7 +56,7 @@ export default async function Home() {
               <p>
                 An accounting anomaly connects to a machine-learning pattern. A child&apos;s question
                 breaks a business model. A line of Nietzsche fixes a debugging session. Knowledge is
-                cheap. The connections between fields nobody puts together — that is the unfair
+                cheap. The connections between fields nobody puts together. That is the unfair
                 advantage.
               </p>
             </div>
@@ -66,7 +65,7 @@ export default async function Home() {
               <div className="k">The mirror</div>
               <h3>To command AI, study your own mind.</h3>
               <p>
-                Not the machine&apos;s architecture — yours. How you decide. What you assume without
+                Not the machine&apos;s architecture. Yours. How you decide. What you assume without
                 noticing. Which steps in your work exist only because humans get tired and forget.
                 Describe your thinking clearly, remove the biology, and the machine becomes an
                 extension of you.
@@ -82,14 +81,13 @@ export default async function Home() {
           <p className="sec-label">The person</p>
           <h2 className="sec-title">Behind the pages.</h2>
           <p className="sec-sub">
-            Father of two — Advik and Eeva, my strictest reviewers. If they can&apos;t understand an
+            Father of two. Advik and Eeva, my strictest reviewers. If they can&apos;t understand an
             idea, it isn&apos;t simple enough yet, and simplicity is the result of depth, not the
             absence of it.
           </p>
           <p className="sec-sub">
             I am an introvert who builds in silence and shows the work when it is done. I read
-            Nietzsche, Taleb and Feynman in the evening and reconcile invoices in the morning —
-            because theory I haven&apos;t proven with my own hands is entertainment. By day I run
+            Nietzsche, Taleb and Feynman in the evening and reconcile invoices in the morning. Because theory I haven&apos;t proven with my own hands is entertainment. By day I run
             financial reporting and automation for a multi-entity group in Ontario. The rest of the
             time, I build.
           </p>
@@ -107,10 +105,10 @@ export default async function Home() {
           <p className="sec-sub">
             My rule for innovation is subtraction: break the goal into steps, challenge every step,
             and delete the ones that exist only because a human used to do them. What remains is the
-            pure path — and that is what I hand to the machine.
+            pure path. And that is what I hand to the machine.
           </p>
           <p className="sec-sub">
-            <strong>ZeroOrigine</strong> is the furthest expression of that idea — an autonomous
+            <strong>ZeroOrigine</strong> is the furthest expression of that idea. An autonomous
             ecosystem of eight AI Minds with a constitution, which research, build, refuse to ship
             when the work isn&apos;t good enough, and launch software with no one in the loop. It
             keeps its own ledger, every dollar and every failure, published by the machine itself at{' '}
@@ -118,7 +116,7 @@ export default async function Home() {
             I don&apos;t repeat its numbers here. The machine speaks for itself.
           </p>
           <p className="sec-sub">
-            <strong>Speed CA</strong> is the same philosophy pointed at my own profession — a
+            <strong>Speed CA</strong> is the same philosophy pointed at my own profession. A
             platform for Chartered Accountants in India, built from twenty years inside the work, at{' '}
             <a href="https://ai2all.ai" target="_blank" rel="noopener noreferrer">ai2all.ai</a>.
           </p>
@@ -167,7 +165,7 @@ export default async function Home() {
           <p className="sec-label">Stay close</p>
           <h2 className="sec-title">One message when I publish something new.</h2>
           <p className="sec-sub">
-            Not a newsletter. No schedule, no noise — a short note when there is a new essay, a new
+            Not a newsletter. No schedule, no noise. A short note when there is a new essay, a new
             manuscript page, or something worth your attention. Nothing else.
           </p>
           <SubscribeForm />

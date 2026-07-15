@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 
 /**
  * The blog. One .mdx file per essay in /content/writing. Push the file, it's published.
- * No CMS, no database, no hand-written HTML — which is exactly why the old site only
+ * No CMS, no database, no hand-written HTML. Which is exactly why the old site only
  * ever got three posts.
  */
 

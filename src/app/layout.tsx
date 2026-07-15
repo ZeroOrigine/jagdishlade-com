@@ -30,8 +30,8 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://jagdishlade.com'),
   title: {
-    default: 'Jagdish Lade — I collect dots. Zero is where I connect them.',
-    template: '%s — Jagdish Lade',
+    default: 'Jagdish Lade. I collect dots. Zero is where I connect them.',
+    template: '%s. Jagdish Lade',
   },
   description:
     'Chartered Accountant and AI & Automation architect. On truth, Back to Zero, collecting dots, and building machines that don\'t need me.',
@@ -40,17 +40,17 @@ export const metadata: Metadata = {
     url: 'https://jagdishlade.com',
     siteName: 'Jagdish Lade',
     title: 'Jagdish Lade',
-    description: 'On truth, Back to Zero, collecting dots — and building machines that don\'t need me.',
+    description: 'On truth, Back to Zero, collecting dots. And building machines that don\'t need me.',
   },
   twitter: { card: 'summary_large_image', creator: '@jagdishlade' },
   alternates: {
     canonical: '/',
-    types: { 'application/rss+xml': [{ url: '/rss.xml', title: 'Jagdish Lade — Writing' }] },
+    types: { 'application/rss+xml': [{ url: '/rss.xml', title: 'Jagdish Lade. Writing' }] },
   },
 };
 
 // Set the theme before paint so the page never flashes the wrong colour.
-// Ink is the identity — the OS preference does not get to overrule it. Paper is a
+// Ink is the identity. The OS preference does not get to overrule it. Paper is a
 // deliberate choice the reader makes (and we remember it).
 const THEME_BOOT = `(function(){try{var t=localStorage.getItem('jl-theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
 

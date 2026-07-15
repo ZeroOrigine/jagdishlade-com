@@ -26,7 +26,7 @@ export default function Nav() {
     try {
       localStorage.setItem('jl-theme', next);
     } catch {
-      /* private mode — theme just won't persist */
+      /* private mode. Theme just won't persist */
     }
     setTheme(next);
   }

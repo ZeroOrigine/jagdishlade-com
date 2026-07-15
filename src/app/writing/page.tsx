@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getPosts, formatDate } from '@/lib/writing';
 
 export const metadata: Metadata = {
-  title: 'Writing — essays on truth, failure, building, starting over',
+  title: 'Writing. Essays on truth, failure, building, starting over',
   description:
     'Essays by Jagdish Lade on truth, failure, accounting, Feynman, autonomous systems, and what happens when you remove every step that only exists because a human used to do it.',
   alternates: { canonical: '/writing' },
@@ -58,7 +58,7 @@ export default function Writing() {
             </div>
           )}
           <p className="sub-note" style={{ marginTop: 28 }}>
-            <a href="/rss.xml">RSS feed</a> — for people who still own their own reading list.
+            <a href="/rss.xml">RSS feed</a>. For people who still own their own reading list.
           </p>
         </div>
       </section>

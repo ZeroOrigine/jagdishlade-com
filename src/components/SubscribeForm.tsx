@@ -23,7 +23,7 @@ export default function SubscribeForm() {
   if (state === 'done') {
     return (
       <p className="sub-note" style={{ color: 'var(--green)' }}>
-        ✓ You&apos;re on the list. You&apos;ll hear from me when a Mind starts building — not before.
+        ✓ You&apos;re on the list. You&apos;ll hear from me when a Mind starts building. Not before.
       </p>
     );
   }
@@ -45,7 +45,7 @@ export default function SubscribeForm() {
       </form>
       <p className="sub-note">
         {state === 'error'
-          ? 'That did not go through. Email me directly — cajagdishlade@gmail.com'
+          ? 'That did not go through. Email me directly. Cajagdishlade@gmail.com'
           : 'One message when a build starts. No newsletter. No drip. Unsubscribe in one click.'}
       </p>
     </>

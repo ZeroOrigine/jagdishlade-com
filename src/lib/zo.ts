@@ -2,7 +2,7 @@
  * The live data layer.
  *
  * Every number about ZeroOrigine that appears on this site is fetched, at request
- * time, from zeroorigine.com's public API — the same database the Minds write to.
+ * time, from zeroorigine.com's public API. The same database the Minds write to.
  * Nothing is typed by hand. That is the entire point: the old site said "2 products
  * live" for four months while six were live. A site about honesty cannot need a human
  * to remember to tell it the truth.
@@ -18,7 +18,7 @@ const ZO = 'https://zeroorigine.com';
 async function get<T>(path: string): Promise<T | null> {
   try {
     // no-store, not ISR: Netlify's data cache never refreshed `revalidate`
-    // entries — the site served July-12 numbers for days while claiming
+    // entries. The site served July-12 numbers for days while claiming
     // "refreshed every 60s". A per-request fetch cannot serve a remembered
     // number; zeroorigine's own CDN caching (s-maxage=60) keeps it cheap.
     const res = await fetch(`${ZO}${path}`, {
@@ -81,7 +81,7 @@ export const STATIONS = ['Research', 'Evaluation', 'Ethics', 'Builder', 'QA', 'L
 
 /**
  * The live /api/birthline is currently publishing raw model output as "the machine's
- * thought" — including ```json blocks with internal file paths. The fix exists in the
+ * thought". Including ```json blocks with internal file paths. The fix exists in the
  * zeroorigine.com rebuild but is not deployed. Until it is, this site refuses to
  * republish it: if the thought looks like code or JSON, we say so plainly instead of
  * leaking a file tree onto a personal homepage.

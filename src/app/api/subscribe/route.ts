@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server';
  * Subscribe. Deliberately dumb: it stores nothing here.
  * If RESEND_API_KEY + AUDIENCE are set, the contact goes to a Resend audience.
  * If they are not set, the endpoint returns an honest 503 and the form tells the
- * person to email me — rather than pretending it worked.
+ * person to email me. Rather than pretending it worked.
  */
 export async function POST(req: Request) {
   const { email } = (await req.json().catch(() => ({}))) as { email?: string };

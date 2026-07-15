@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 
-/** Progressive enhancement only — if JS never runs, .reveal is made visible by CSS fallback. */
+/** Progressive enhancement only. If JS never runs, .reveal is made visible by CSS fallback. */
 export default function Reveal() {
   useEffect(() => {
     const els = document.querySelectorAll('.reveal');

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import SubscribeForm from '@/components/SubscribeForm';
 
 export const metadata: Metadata = {
-  title: 'Connect — I read every message',
-  description: 'No contact form, no autoresponder. Email, LinkedIn, X, GitHub — a person on the other end.',
+  title: 'Connect. I read every message',
+  description: 'No contact form, no autoresponder. Email, LinkedIn, X, GitHub. A person on the other end.',
   alternates: { canonical: '/connect' },
 };
 
@@ -26,7 +26,7 @@ export default function Connect() {
           </h1>
           <p className="lede">
             If something here made you think, or you want to talk about building, failing, or
-            starting over — I&apos;m here. No contact form. No autoresponders. A person on the other
+            starting over. I&apos;m here. No contact form. No autoresponders. A person on the other
             end.
           </p>
         </div>

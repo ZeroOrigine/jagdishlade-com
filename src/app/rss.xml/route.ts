@@ -20,7 +20,7 @@ export async function GET() {
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
-    <title>Jagdish Lade — Writing</title>
+    <title>Jagdish Lade. Writing</title>
     <link>${base}/writing</link>
     <description>Essays on truth, failure, building, and starting over.</description>
     <language>en</language>

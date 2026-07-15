@@ -1,14 +1,14 @@
 import { ImageResponse } from 'next/og';
 
 // nodejs runtime (no `edge`): Netlify's edge bundler needs Deno, and this image doesn't need it.
-export const alt = 'Jagdish Lade — Failed. Returned to zero. Building from there.';
+export const alt = 'Jagdish Lade. Failed. Returned to zero. Building from there.';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 /**
  * Satori (the renderer behind next/og) has two rules that will fail a production build:
  *   1. every element with more than one child MUST declare display:flex (or none)
- *   2. any glyph outside the loaded font (e.g. "●") triggers a dynamic font fetch — which 400s
+ *   2. any glyph outside the loaded font (e.g. "●") triggers a dynamic font fetch. Which 400s
  * Both were caught by the real Netlify build. Kept to ASCII, flexed everywhere.
  */
 export default function OG() {
@@ -42,7 +42,7 @@ export default function OG() {
         </div>
 
         <div style={{ display: 'flex', color: '#3ddc84', fontSize: 22, letterSpacing: 2 }}>
-          zeroorigine.com — live
+          zeroorigine.com. Live
         </div>
       </div>
     ),
