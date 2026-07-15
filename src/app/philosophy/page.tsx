@@ -5,7 +5,7 @@ import Reveal from '@/components/Reveal';
 export const metadata: Metadata = {
   title: 'TRUTH. A manuscript on returning to zero',
   description:
-    'Five pages, written by hand in one sitting, December 2025. On conditioning, the pain of seeking, and why going back to zero is not a metaphor.',
+    'A manuscript on returning to zero. On conditioning, the pain of seeking, and why going back to zero is not a metaphor.',
   alternates: { canonical: '/philosophy' },
 };
 
@@ -93,13 +93,6 @@ export default function Philosophy() {
         <div className="wrap">
           <div className="t">TRUTH</div>
           <p className="s">a manuscript on returning to zero</p>
-          <p
-            className="sub-note"
-            style={{ marginTop: 28, fontFamily: 'var(--serif)', fontSize: '1rem', color: 'var(--text-muted)' }}
-          >
-Five pages, written in one sitting in December 2025. The name became a
-            company, and then the way I build everything.
-          </p>
         </div>
       </header>
 
