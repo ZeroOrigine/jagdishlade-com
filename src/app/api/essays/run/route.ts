@@ -151,7 +151,7 @@ async function sendBroadcast(title: string, summary: string, essayUrl: string) {
       from: 'Jagdish Lade <essays@zeroorigine.com>',
       reply_to: process.env.CONTACT_TO || 'cajagdishlade@gmail.com',
       subject: title,
-      name: `Launch essay: ${title}`.slice(0, 100),
+      name: `Launch ${Date.now()}`.slice(0, 60),
       html: emailHtml(title, summary, essayUrl),
     }),
   });
