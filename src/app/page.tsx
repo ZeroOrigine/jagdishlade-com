@@ -15,7 +15,6 @@ export default async function Home() {
       {/* ---------- HERO ---------- */}
       <section className="hero">
         <div className="wrap-wide">
-          <p className="eyebrow">Chartered Accountant · AI &amp; Automation Architect</p>
           <h1>
             I collect dots. <em>Zero</em> is where I connect them.
           </h1>

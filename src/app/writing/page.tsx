@@ -1,22 +1,22 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { getPosts, formatDate } from '@/lib/writing';
 import Constellation from '@/components/Constellation';
 import SubscribeForm from '@/components/SubscribeForm';
+import WritingList from '@/components/WritingList';
+import { getPosts, formatDate } from '@/lib/writing';
 
 export const metadata: Metadata = {
   title: 'Writing. Essays on truth, failure, building, starting over',
   description:
-    'Essays by Jagdish Lade on truth, failure, accounting, Feynman, autonomous systems, and what happens when you remove every step that only exists because a human used to do it.',
+    'Essays by Jagdish Lade on truth, failure, accounting, autonomous systems, and what happens when you remove every step that only exists because a human used to do it.',
   alternates: { canonical: '/writing' },
 };
 
 export default function Writing() {
-  const posts = getPosts();
+  const posts = getPosts().map((p) => ({ ...p, dateLabel: formatDate(p.date) }));
 
   return (
     <>
-      <section className="hero" style={{ paddingBottom: 40 }}>
+      <section className="hero" style={{ paddingBottom: 28 }}>
         <div className="wrap">
           <p className="eyebrow">Writing</p>
           <h1>
@@ -32,42 +32,20 @@ export default function Writing() {
       <section style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="const-band">
-            <Constellation seed="jagdish-lade-writing" height={150} />
+            <Constellation seed="jagdish-lade-writing" height={130} />
           </div>
           {posts.length === 0 ? (
             <div className="empty">Nothing published yet.</div>
           ) : (
-            <div className="post-list">
-              {posts.map((p) => (
-                <Link key={p.slug} href={`/writing/${p.slug}`} className="post-row">
-                  <div className="meta">
-                    {formatDate(p.date)}
-                    <br />
-                    {p.readingMinutes} min read
-                  </div>
-                  <div>
-                    <h3>{p.title}</h3>
-                    <p>{p.summary}</p>
-                    {p.tags.length > 0 && (
-                      <div className="tags">
-                        {p.tags.map((t) => (
-                          <span className="tag" key={t}>
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <WritingList posts={posts} />
           )}
+
           <div className="subscribe-block">
             <h3>Get new essays by email.</h3>
             <p>When the machine ships a product, or I finish a piece of writing, it reaches you the same day. Nothing else.</p>
             <SubscribeForm />
           </div>
-          <p className="sub-note" style={{ marginTop: 28 }}>
+          <p className="sub-note" style={{ marginTop: 20 }}>
             Or subscribe by <a href="/rss.xml">RSS</a>, for people who still own their own reading list.
           </p>
         </div>

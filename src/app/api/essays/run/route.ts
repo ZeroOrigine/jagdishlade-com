@@ -58,7 +58,7 @@ function gate(mdx: string): string | null {
   if (bad) return `contains banned phrase "${bad.trim()}"`;
   for (const k of ['title:', 'summary:', 'url:', 'product:', 'tags:']) if (!mdx.includes(k)) return `missing frontmatter ${k}`;
   const words = mdx.replace(/^---[\s\S]*?---/, '').trim().split(/\s+/).length;
-  if (words < 300 || words > 800) return `word count ${words} out of range`;
+  if (words < 650 || words > 1700) return `word count ${words} out of range`;
   return null;
 }
 
@@ -71,9 +71,9 @@ HARD RULES:
 - Only claim what the provided product facts support. Invent NO features, NO user counts, NO testimonials, NO metrics. If you cannot ground a claim in the facts, cut it.
 - Never make a superiority or ranking claim: no revolutionary, best, first-of-its-kind, the only one, nobody else, game-changer. Ordinary uses of the words first or only in a sentence are fine; ranking claims are not.
 - NEVER use an em dash. Use a period, comma, or colon instead.
-- Exactly ONE call to action, linking to the product URL once, honestly framed.
+- Exactly ONE call to action. Write it as a markdown link on its own line, for example [Open the tool](URL), never as a bare pasted URL. Link the product URL once, honestly framed.
 - Structure: bold hook, then the real problem a specific person has, then a dot-connection to a wider truth, then how this product removes a step, then an honest note that his machine built it (one link to zeroorigine.com allowed), then one-line CTA to the product URL, then end with a genuine question that invites a reply.
-- 450 to 650 words. Warm, direct, no corporate jargon, no hype.
+- 900 to 1300 words. Long enough that a curious reader is pulled from the first line to the last. Use 3 to 5 short sections with ## subheads. Warm, direct, specific, no corporate jargon, no hype. Give real texture: a concrete scene the reader recognises, a genuine dot-connection to another field, and the honest state of the product.
 
 OUTPUT ONLY valid MDX: frontmatter first, then body. Exactly this frontmatter shape:
 ---
@@ -101,7 +101,7 @@ Write the lead-magnet essay now. Infer the specific reader from the description 
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': process.env.ANTHROPIC_API_KEY || '', 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-    body: JSON.stringify({ model: 'claude-sonnet-5', max_tokens: 2000, system, messages: [{ role: 'user', content: user }] }),
+    body: JSON.stringify({ model: 'claude-opus-4-8', max_tokens: 4000, system, messages: [{ role: 'user', content: user }] }),
   });
   if (!r.ok) throw new Error(`anthropic ${r.status}: ${(await r.text()).slice(0, 200)}`);
   const d = await r.json();

@@ -217,7 +217,7 @@ h1, h2, h3, h4 {
    HERO
    ========================================================= */
 .hero {
-  padding: clamp(80px, 14vw, 160px) 0 clamp(60px, 9vw, 110px);
+  padding: clamp(52px, 7vw, 104px) 0 clamp(40px, 5vw, 72px);
   position: relative; overflow: hidden;
 }
 .hero::after {
@@ -304,7 +304,7 @@ h1, h2, h3, h4 {
 /* =========================================================
    SECTIONS
    ========================================================= */
-section { padding: clamp(60px, 9vw, 110px) 0; }
+section { padding: clamp(40px, 5.5vw, 76px) 0; }
 .sec-label {
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em;
   text-transform: uppercase; color: var(--text-dim); margin-bottom: 14px;
@@ -496,8 +496,9 @@ section { padding: clamp(60px, 9vw, 110px) 0; }
   text-transform: uppercase; color: var(--text-dim); margin-top: var(--s3);
 }
 .ms { max-width: var(--w-read); margin: 0 auto; padding: 0 24px; }
+
 .page {
-  padding: var(--s6) 0; border-bottom: 1px solid var(--border);
+  padding: var(--s5) 0; border-bottom: 1px solid var(--border);
 }
 .page:last-child { border-bottom: 0; }
 .page-n {
@@ -685,3 +686,52 @@ section { padding: clamp(60px, 9vw, 110px) 0; }
 }
 .subscribe-block h3 { font-size: 1.35rem; margin-bottom: 8px; }
 .subscribe-block > p { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 18px; max-width: 52ch; }
+
+/* =========================================================
+   WRITING FILTERS + READ NEXT
+   ========================================================= */
+.filters {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 8px;
+}
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-tab {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
+  padding: 7px 13px; border-radius: 20px; cursor: pointer;
+  background: transparent; border: 1px solid var(--border); color: var(--text-muted);
+  transition: all 0.2s;
+}
+.filter-tab:hover { border-color: var(--border-strong); color: var(--text); }
+.filter-tab.on { background: var(--text); border-color: var(--text); color: var(--bg); }
+.filter-n { opacity: 0.6; margin-left: 3px; }
+.filter-tab.on .filter-n { opacity: 0.75; }
+.filter-sort {
+  font-family: var(--mono); font-size: 0.7rem; color: var(--text-dim);
+  background: transparent; border: 0; cursor: pointer; padding: 6px 2px;
+}
+.filter-sort:hover { color: var(--text); }
+
+.readnext { margin: var(--s5) 0 var(--s2); }
+.readnext-track { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.readnext-track.scroll {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  gap: 14px; padding-bottom: 6px; margin: 0 -4px; padding-left: 4px; padding-right: 4px;
+}
+.readnext-track.scroll::-webkit-scrollbar { height: 6px; }
+.readnext-track.scroll::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+.readnext-card {
+  border: 1px solid var(--border); border-radius: 12px; background: var(--surface);
+  padding: 20px; text-decoration: none; color: var(--text);
+  transition: border-color 0.25s, transform 0.25s; scroll-snap-align: start;
+}
+.readnext-track.scroll .readnext-card { min-width: 78%; }
+.readnext-card:hover { text-decoration: none; transform: translateY(-2px); border-color: color-mix(in srgb, var(--blue) 40%, var(--border)); }
+.readnext-meta { font-family: var(--mono); font-size: 0.66rem; color: var(--text-dim); margin-bottom: 10px; }
+.readnext-card h4 { font-size: 1.12rem; line-height: 1.25; margin-bottom: 8px; }
+.readnext-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+.readnext-go { display: block; margin-top: 12px; font-family: var(--mono); font-size: 0.72rem; color: var(--blue); }
+@media (min-width: 700px) { .readnext-track.scroll .readnext-card { min-width: 46%; } }
+@media (max-width: 620px) {
+  .readnext-track { grid-template-columns: 1fr; }
+  .filters { gap: 10px; }
+}
