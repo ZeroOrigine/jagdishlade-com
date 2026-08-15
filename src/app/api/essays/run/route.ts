@@ -135,7 +135,8 @@ function emailHtml(title: string, summary: string, essayUrl: string): string {
 </td></tr>
 <tr><td style="padding:24px 34px 30px">
 <div style="border-top:1px solid #e3dccd;padding-top:18px;font-size:13px;color:#8b9299;line-height:1.6">
-You get this because you asked to hear when I publish. Reply anytime, it reaches me.<br>Jagdish Lade &middot; jagdishlade.com
+You get this because you asked to hear when I publish. &middot; <a href="{{{RESEND_UNSUBSCRIBE_URL}}}" style="color:#8b9299">Unsubscribe</a><br>
+Say something back at <a href="https://jagdishlade.com/connect" style="color:#8b9299">jagdishlade.com/connect</a>, which reaches me.<br>Jagdish Lade &middot; jagdishlade.com
 </div>
 </td></tr>
 </table></td></tr></table></body></html>`;
@@ -151,7 +152,11 @@ async function sendBroadcast(title: string, summary: string, essayUrl: string) {
     body: JSON.stringify({
       audience_id: aud,
       from: 'Jagdish Lade <essays@zeroorigine.com>',
-      reply_to: process.env.CONTACT_TO || 'cajagdishlade@gmail.com',
+      // NO reply_to. It fell back to a personal Gmail address, so every reader
+      // of every broadcast could see it in the headers, and anyone who hit
+      // reply confirmed it. A Reply-To is a published contact method. The
+      // footer points at /connect instead, which is a real route that receives
+      // and belongs to the site rather than to a person's inbox.
       subject: title,
       name: `Launch ${Date.now()}`.slice(0, 60),
       html: emailHtml(title, summary, essayUrl),

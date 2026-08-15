@@ -43,16 +43,38 @@ export async function POST(req: Request) {
 
   // Instant welcome email (only for a genuinely new subscriber, not a re-subscribe).
   if (r.ok) {
+    // The contact id is an unguessable uuid, which is what makes a one-click
+    // unsubscribe possible without putting the reader's address in a URL where
+    // it can be enumerated or logged by every hop in between.
+    let contactId = '';
+    try {
+      contactId = String(((await r.json()) as { id?: string })?.id || '');
+    } catch {
+      /* no id, the footer degrades to the typed form below */
+    }
     try {
       await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: { authorization: `Bearer ${key}`, 'content-type': 'application/json' },
         body: JSON.stringify({
           from: 'Jagdish Lade <essays@zeroorigine.com>',
-          to: [email],
-          reply_to: process.env.CONTACT_TO || 'cajagdishlade@gmail.com',
+          // NO reply_to. It used to fall back to a personal Gmail address, which
+          // meant every subscriber could read it in the headers. A Reply-To is a
+          // contact method that leaves the machine, and the rule is the same one
+          // the footer obeys: never publish a personal address, and never print
+          // a contact route that cannot receive. /connect is real and is neither.
           subject: "You're subscribed",
-          html: welcomeHtml(),
+          html: welcomeHtml(contactId),
+          ...(contactId
+            ? {
+                // RFC 8058, so leaving costs one click in the mail client and a
+                // reader who cannot find the link never has to reach for 'spam'.
+                headers: {
+                  'List-Unsubscribe': `<${SITE}/api/unsubscribe?c=${contactId}>`,
+                  'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+                },
+              }
+            : {}),
         }),
       });
     } catch {
@@ -63,8 +85,17 @@ export async function POST(req: Request) {
   return NextResponse.json({ ok: true });
 }
 
-function welcomeHtml(): string {
-  const site = 'https://jagdishlade.com';
+const SITE = process.env.SITE_URL || 'https://jagdishlade.com';
+
+function welcomeHtml(contactId = ''): string {
+  const site = SITE;
+  // The promise and the link must match. This email said "one-click unsubscribe
+  // on every email" and carried none, which is the worst combination: the reader
+  // stops looking for a way out and presses spam instead, and a spam complaint
+  // is scored against the sending domain where an unsubscribe is not.
+  const unsub = contactId
+    ? `${site}/api/unsubscribe?c=${encodeURIComponent(contactId)}`
+    : `${site}/connect`;
   return `<!doctype html><html><body style="margin:0;background:#f2ede2;font-family:Georgia,serif;color:#16181b">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2ede2;padding:32px 16px"><tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#faf7f0;border:1px solid #e3dccd;border-radius:14px;overflow:hidden">
@@ -82,7 +113,8 @@ function welcomeHtml(): string {
 </td></tr>
 <tr><td style="padding:24px 34px 30px">
 <div style="border-top:1px solid #e3dccd;padding-top:18px;font-size:13px;color:#8b9299;line-height:1.6">
-Reply anytime, it reaches me.<br>Jagdish Lade &middot; jagdishlade.com
+You received this because you subscribed at jagdishlade.com. &middot; <a href="${unsub}" style="color:#8b9299">Unsubscribe</a><br>
+Say something back at <a href="${site}/connect" style="color:#8b9299">jagdishlade.com/connect</a>, which reaches me.<br>Jagdish Lade &middot; jagdishlade.com
 </div>
 </td></tr>
 </table></td></tr></table></body></html>`;
